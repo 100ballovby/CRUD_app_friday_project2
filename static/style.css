@@ -1,0 +1,8 @@
+.navigation {
+    display: block;
+    width: 100%;
+    background: #7099ff;
+    padding: 10px;
+    list-style: none;
+    font-size: 18px;
+}
