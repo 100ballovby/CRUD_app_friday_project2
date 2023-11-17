@@ -1,8 +1,8 @@
 .navigation {
-    display: block;
-    width: 100%;
-    background: #7099ff;
-    padding: 10px;
-    list-style: none;
-    font-size: 18px;
+    display: block;  /* стиль отображения элемента: блочный */
+    width: 100%;  /* сколько места от ширины экрана занимает элемент */
+    background: #7099ff;  /* цвет фона элемента */
+    padding: 10px;  /* внутренние отступы элемента */
+    list-style: none;  /* убрать черные точки у элементов списка */
+    font-size: 18px;  /* размер текста элемента */
 }
