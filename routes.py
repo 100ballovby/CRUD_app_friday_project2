@@ -22,4 +22,6 @@ def contacts():
 @app.route('/todos')
 def todos():
     url = 'https://jsonplaceholder.typicode.com/todos'
+    data = req.get(url).json()
+    return render_template('todos.html', title='Задачи', data=data)
 

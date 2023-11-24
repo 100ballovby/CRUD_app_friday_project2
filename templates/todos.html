@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Задачи</h1>
+
+    <div class="row">
+        {% for todo in data %}
+            <div class="todo-card {% if todo["completed"] %}green{% else %}red{% endif %}">
+                <p>{{ todo["title"] }}</p>
+                <p>User: <a href="">{{ todo["userId"] }}</a></p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -6,3 +6,28 @@
     list-style: none;  /* убрать черные точки у элементов списка */
     font-size: 18px;  /* размер текста элемента */
 }
+
+.row {
+    display: flex;  /* включить резиновую верстку */
+    flex-direction: row;  /* расположить все элементы в строчку */
+    flex-wrap: wrap;  /* переносить элемент на следующую строку, если он не поместился */
+}
+
+.red {
+    background: rgba(255, 159, 159, 0.74);
+    border-color: #ff3d3d;
+}
+
+.green {
+    background: rgba(177, 255, 152, 0.74);
+    border-color: #87ff3d;
+}
+
+.todo-card {
+    width: 30%;
+    margin-right: 1em;  /* отступ справа ~16px */
+    margin-bottom: 1em;  /* отступ снизу ~16px */
+    padding: 1em;  /* отступ от внутренних границ блока ~16px */
+    font-size: 18px;
+    border: 0.3em solid black;  /* рамка: ~4.8px сплошная черная */
+}
