@@ -7,7 +7,7 @@
         {% for todo in data %}
             <div class="todo-card {% if todo["completed"] %}green{% else %}red{% endif %}">
                 <p>{{ todo["title"] }}</p>
-                <p>User: <a href="">{{ todo["userId"] }}</a></p>
+                <p>User: <a href="users/{{ todo["userId"] }}">{{ todo["userId"] }}</a></p>
             </div>
         {% endfor %}
     </div>
