@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template, request, url_for
+import requests as req
 
 
 @app.route('/')
@@ -16,4 +17,9 @@ def about():
 @app.route('/contacts')
 def contacts():
     return render_template('contact.html', title='Контакты')
+
+
+@app.route('/todos')
+def todos():
+    url = 'https://jsonplaceholder.typicode.com/todos'
 
