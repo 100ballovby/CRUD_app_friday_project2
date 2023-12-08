@@ -1,8 +1,7 @@
-from app import db
 from models import User, Company
 
 
-user_list = [
+list = [
   {
     "id": 1,
     "name": "Leanne Graham",
@@ -236,6 +235,24 @@ user_list = [
 ]
 
 
-def list_to_db(list):
-    pass
-
+def list_to_db(db):
+  for user in list:
+    # создаем новый объект Компания в БД
+    c = Company(name=user["company"]["name"],
+                website=user["website"])
+    u = User(
+      name=user["name"],
+      username=user["username"],
+      email=user["email"],
+      street=user["address"]["street"],
+      city=user["address"]["city"],
+      phone=user["phone"]
+    )
+    try:
+      db.session.add(c)
+      db.session.add(u)
+      user.company_id = c
+    except:
+      print("Something went wrong!")
+  # применить изменения в бд
+  db.session.commit()

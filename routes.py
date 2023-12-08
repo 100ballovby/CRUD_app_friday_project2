@@ -1,11 +1,13 @@
-from app import app
+from app import app, db
 from flask import render_template, request, url_for
 import requests as req
+from script import list_to_db
 
 
 @app.route('/')
 def index():  # функция для главной страницы (она ее отображает)
     user = {'username': 'GreatRaksin'}
+    list_to_db(db)
     return render_template('index.html', title='Главная страница', user=user)
 
 
