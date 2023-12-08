@@ -2,12 +2,9 @@
 
 {% block content %}
     {% if user %}
-        <h1>User: {{ user["username"] }}</h1>
-        <p>Name: {{ user["name"] }}</p>
-        <p>Address: {{ user["address"]["Street"] }}, {{ user["address"]["suite"] }}</p>
-        <p>Phone: {{ user["phone"] }}</p>
-        <p>Web: <a href="{{ user["website"] }}">{{ user["website"] }}</a></p>
-    {% else %}
-        <p>Not found!</p>
+        <h1>User: {{ user.username }}</h1>
+        <p>Name: {{ user.name }}</p>
+        <p>Address: {{ user.city }}, {{ user.street }}</p>
+        <p>Phone: {{ user.phone }}</p>
     {% endif %}
 {% endblock %}

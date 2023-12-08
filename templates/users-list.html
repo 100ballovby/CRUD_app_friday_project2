@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<h1>Пользователи:</h1>
+    {% for user in users %}
+    	<div class="card-user">
+            <h2>{{ user.name }}</h2>
+            <h3>{{ user.username }}</h3>
+            <p>{{ user.email }}</p>
+            <p>Address: {{ user.city }}, {{ user.street }}</p>
+            <p>Phone: {{ user.phone }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
