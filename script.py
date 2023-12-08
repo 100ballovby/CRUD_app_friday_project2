@@ -1,3 +1,7 @@
+from app import db
+from models import User, Company
+
+
 user_list = [
   {
     "id": 1,
