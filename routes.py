@@ -7,7 +7,7 @@ from script import list_to_db
 @app.route('/')
 def index():  # функция для главной страницы (она ее отображает)
     user = {'username': 'GreatRaksin'}
-    list_to_db(db)
+    # list_to_db(db)
     return render_template('index.html', title='Главная страница', user=user)
 
 
