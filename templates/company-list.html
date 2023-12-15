@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	<h1>Пользователи:</h1>
+    {% for company in companies %}
+    	<div class="card-user">
+            <h2>{{ company.name }}</h2>
+            <p>Website: <a href="{{ company.website }}" target="_blank">{{ company.website }}</a></p>
+        </div>
+    {% endfor %}
+{% endblock %}
+

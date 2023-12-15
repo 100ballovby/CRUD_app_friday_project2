@@ -2,7 +2,7 @@ from app import app, db
 from flask import render_template, request, url_for
 import requests as req
 from script import list_to_db
-from models import User
+from models import User, Company
 
 
 @app.route('/')
@@ -31,8 +31,16 @@ def todos():
 
 @app.route('/users-list')
 def users_list():
-  users = User.query.all()  # выгружаем всех пользователей из БД
+  users = User.query.all()  # выгружаем все компании из БД
   return render_template('users-list.html', title='Пользователи', users=users)
+
+
+@app.route('/company-list')
+def companies_list():
+  companies = Company.query.all()  # выгружаем всех пользователей из БД
+  return render_template('company-list.html',
+                         title='Компании',
+                         companies=companies)
 
 
 @app.route('/users/<id>')
