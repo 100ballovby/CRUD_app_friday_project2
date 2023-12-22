@@ -1,14 +1,14 @@
 from app import app, db
 from flask import render_template, request, url_for
 import requests as req
-from script import list_to_db
 from models import User, Company
+from mm import fill_todo
 
 
 @app.route('/')
 def index():  # функция для главной страницы (она ее отображает)
     user = {'username': 'GreatRaksin'}
-    # list_to_db(db)
+    fill_todo(db)
     return render_template('index.html', title='Главная страница', user=user)
 
 
