@@ -5,9 +5,9 @@
 
     <div class="row">
         {% for todo in data %}
-            <div class="todo-card {% if todo["completed"] %}green{% else %}red{% endif %}">
-                <p>{{ todo["title"] }}</p>
-                <p>User: <a href="users/{{ todo["userId"] }}">{{ todo["userId"] }}</a></p>
+            <div class="todo-card {% if todo.completed %}green{% else %}red{% endif %}">
+                <p>{{ todo.title }}</p>
+                <p>User: <a href="users/{{ todo.user_id }}" target="_blank">{{ todo.user_id }}</a></p>
             </div>
         {% endfor %}
     </div>

@@ -7,4 +7,14 @@
         <p>Address: {{ user.city }}, {{ user.street }}</p>
         <p>Phone: {{ user.phone }}</p>
     {% endif %}
+    {% for todo in todos %}
+    	<p>{{ todo.title }} | Status:
+            {% if todo.completed %}
+                <span class="badge bg-success">Completed</span>
+            {% else %}
+                <span class="badge bg-danger">Not completed</span>
+            {% endif %}
+        </p>
+    {% endfor %}
+
 {% endblock %}

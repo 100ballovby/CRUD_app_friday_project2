@@ -1,14 +1,12 @@
 from app import app, db
 from flask import render_template, request, url_for
 import requests as req
-from models import User, Company
-from mm import fill_todo
+from models import User, Company, ToDo
 
 
 @app.route('/')
 def index():  # функция для главной страницы (она ее отображает)
     user = {'username': 'GreatRaksin'}
-    fill_todo(db)
     return render_template('index.html', title='Главная страница', user=user)
 
 
@@ -20,13 +18,6 @@ def about():
 @app.route('/contacts')
 def contacts():
     return render_template('contact.html', title='Контакты')
-
-
-@app.route('/todos')
-def todos():
-    url = 'https://jsonplaceholder.typicode.com/todos'
-    data = req.get(url).json()
-    return render_template('todos.html', title='Задачи', data=data)
 
 
 @app.route('/users-list')
@@ -47,4 +38,6 @@ def companies_list():
 def user(id):
     """Функция должна находить пользователя по id в списке пользователей и выдавать страницу с информацией о нем"""
     instance = User.query.get(id)
-    return render_template('user_page.html', title="О пользователе", user=instance)
+    user_todos = ToDo.query.filter_by(user_id=id)
+    return render_template('user_page.html', title="О пользователе",
+                           user=instance, todos=user_todos)
