@@ -46,5 +46,5 @@ def companies_list():
 @app.route('/users/<id>')
 def user(id):
     """Функция должна находить пользователя по id в списке пользователей и выдавать страницу с информацией о нем"""
-    instance = User.query.get(id=id)
+    instance = User.query.get(id)
     return render_template('user_page.html', title="О пользователе", user=instance)

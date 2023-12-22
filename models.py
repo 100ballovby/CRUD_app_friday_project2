@@ -18,6 +18,13 @@ class Company(db.Model):
     website = db.Column(db.String(255), index=True)
 
 
+class ToDo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    completed = db.Column(db.Boolean, index=True)
+
+
 
 
 
