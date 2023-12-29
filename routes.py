@@ -1,6 +1,7 @@
 from app import app, db
 from flask import render_template, request, url_for, redirect
 from models import User, Company, ToDo
+from forms import UserForm
 
 
 @app.route('/')
@@ -52,4 +53,5 @@ def delete_user(id):
 
 @app.route('/users/add-user')
 def add_user():
-    return render_template('add_user.html')
+    form = UserForm()
+    return render_template('add_user.html', form=form)
