@@ -21,3 +21,8 @@ class UserForm(FlaskForm):
             companies.append((company.id, company.name))
         self.company_id.choices = companies
 
+
+class CompanyForm(FlaskForm):
+    name = StringField('Company Name', validators=[DataRequired()])
+    website = StringField('Website', validators=[DataRequired()])
+

@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template, request, url_for, redirect
 from models import User, Company, ToDo
-from forms import UserForm
+from forms import UserForm, CompanyForm
 
 
 @app.route('/')
@@ -51,7 +51,34 @@ def delete_user(id):
     return redirect(url_for('users_list'))
 
 
-@app.route('/users/add-user')
+@app.route('/users/add-user', methods=['GET', 'POST'])
 def add_user():
     form = UserForm()
+    if form.validate_on_submit():  # если форма отправлена
+        new_user = User(
+            name=form.name.data,
+            username=form.username.data,
+            email=form.email.data,
+            street=form.street.data,
+            city=form.city.data,
+            phone=form.phone.data,
+            company_id=form.company_id.data
+        )  # создать нового пользователя
+        db.session.add(new_user)  # добавить его в базу
+        db.session.commit()  # сохранить изменения
+        return redirect(url_for('users_list'))  # перенаправить обратно на список
     return render_template('add_user.html', form=form)
+
+
+@app.route('/companies/add-company', methods=['GET', 'POST'])
+def add_company():
+    form = CompanyForm()
+    if form.validate_on_submit():
+        new_company = Company(
+            name=form.name.data,
+            website=form.website.data
+        )
+        db.session.add(new_company)
+        db.session.commit()
+        return redirect(url_for('companies_list'))
+    return render_template('add_company.html', form=form)
