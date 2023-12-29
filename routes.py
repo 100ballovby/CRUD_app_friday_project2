@@ -41,3 +41,11 @@ def user(id):
     user_todos = ToDo.query.filter_by(user_id=id)
     return render_template('user_page.html', title="О пользователе",
                            user=instance, todos=user_todos)
+
+
+@app.route('/users/delete/<id>')
+def delete_user(id):
+    user = User.query.get(id)
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for('users_list'))
