@@ -1,6 +1,5 @@
 from app import app, db
-from flask import render_template, request, url_for
-import requests as req
+from flask import render_template, request, url_for, redirect
 from models import User, Company, ToDo
 
 
@@ -49,3 +48,8 @@ def delete_user(id):
     db.session.delete(user)
     db.session.commit()
     return redirect(url_for('users_list'))
+
+
+@app.route('/users/add-user')
+def add_user():
+    return render_template('add_user.html')

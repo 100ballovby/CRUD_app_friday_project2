@@ -2,25 +2,26 @@
 
 
 {% block content %}
-	<h1>Пользователи:</h1>
+    <h1>Пользователи:</h1>
     <div class="row justify-content-around">
-    {% for user in users %}
-    	<div class="card my-1 mx-1" style="width: 30%">
-            <div class="card-header">
-                <a href="users/{{ user.id }}" target="_blank"><h2>{{ user.name }}</h2></a>
-                <p><span class="badge text-bg-warning"><a style="text-decoration: none; color: white;" href="">Edit</a></span>
-                    <span class="badge text-bg-danger"><a style="text-decoration: none; color: white;" href="">Delete</a></span></p>
+        {% for user in users %}
+            <div class="card my-1 mx-1" style="width: 30%">
+                <div class="card-header">
+                    <a href="users/{{ user.id }}" target="_blank"><h2>{{ user.name }}</h2></a>
+                    <p><span class="badge text-bg-warning"><a style="text-decoration: none; color: white;" href="">Edit</a></span>
+                        <span class="badge text-bg-danger"><a style="text-decoration: none; color: white;" href="/users/delete/{{ user.id }}">Delete</a></span>
+                    </p>
+                </div>
+                <div class="card-body">
+                    <h3>{{ user.username }}</h3>
+                    <p>{{ user.email }}</p>
+                    <p>Address: {{ user.city }}, {{ user.street }}</p>
+                </div>
+                <div class="card-footer">
+                    <p>Phone: {{ user.phone }}</p>
+                </div>
             </div>
-            <div class="card-body">
-                <h3>{{ user.username }}</h3>
-                <p>{{ user.email }}</p>
-                <p>Address: {{ user.city }}, {{ user.street }}</p>
-            </div>
-            <div class="card-footer">
-                <p>Phone: {{ user.phone }}</p>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 {% endblock %}
 
