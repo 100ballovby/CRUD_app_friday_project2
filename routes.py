@@ -1,7 +1,10 @@
+from sqlalchemy.sql.functions import current_user
+
 from app import app, db
 from flask import render_template, request, url_for, redirect
 from models import User, Company, ToDo
-from forms import UserForm, CompanyForm
+from forms import UserForm, CompanyForm, ToDoForm
+from datetime import datetime
 
 
 @app.route('/')
@@ -82,3 +85,22 @@ def add_company():
         db.session.commit()
         return redirect(url_for('companies_list'))
     return render_template('add_company.html', form=form)
+
+
+@app.route('/todos/add-todo', methods=['GET', 'POST'])
+def add_todo():
+    form = ToDoForm()
+    todos = ToDo.query.order_by(ToDo.created_at.desc()).all()
+    today = datetime.now()
+    if form.validate_on_submit():
+        new_todo = ToDo(
+            title=form.title.data,
+            user_id=form.user_id.data,
+            created_at=today,
+            deadline=today
+        )
+        db.session.add(new_todo)
+        db.session.commit()
+        return redirect(url_for('add_todo'))
+    return render_template('add_todo.html', title="Add new ToDo",
+                           form=form, todos=todos)

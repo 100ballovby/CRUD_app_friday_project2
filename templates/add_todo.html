@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Add ToDo</h1>
+    <hr>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {% for field in form %}
+        	<div class="form-group">
+                {{ field }}
+            </div>
+        {% endfor %}
+    </form>
+    <hr>
+    <h2>Todos</h2>
+    {% for todo in todos %}
+        <div class="card">
+            <p>{{ todo.title }}</p>
+            <p>{{ todo.user_id }}</p>
+        </div>
+    {% endfor %}
+
+{% endblock %}

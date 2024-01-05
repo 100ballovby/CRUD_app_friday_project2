@@ -2,7 +2,8 @@
 
 {% block content %}
     <h1>Задачи</h1>
-
+    <hr>
+    <a href="{{ url_for('add_todo') }}" class="btn btn-outline-success">Add ToDo</a>
     <div class="row">
         {% for todo in data %}
             <div class="todo-card {% if todo.completed %}green{% else %}red{% endif %}">

@@ -22,7 +22,9 @@ class ToDo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    completed = db.Column(db.Boolean,  index=True)
+    created_at = db.Column(db.DateTime, default='2024-01-05 12:00:00')
+    deadline = db.Column(db.DateTime)
+    completed = db.Column(db.Boolean, index=True, default=False)
 
 
 
