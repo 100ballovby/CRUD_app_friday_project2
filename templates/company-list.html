@@ -2,7 +2,9 @@
 
 
 {% block content %}
-	<h1>Пользователи:</h1>
+	<h1>Компании:</h1>
+    <hr>
+    <a href="{{ url_for('add_company') }}" class="btn btn-outline-success">Add company</a>
     {% for company in companies %}
     	<div class="card-user">
             <h2>{{ company.name }}</h2>

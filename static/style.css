@@ -31,3 +31,8 @@
     font-size: 18px;
     border: 0.3em solid black;  /* рамка: ~4.8px сплошная черная */
 }
+
+form {
+    width: 40%;
+    margin: 1em auto;
+}
