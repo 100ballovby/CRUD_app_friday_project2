@@ -7,14 +7,36 @@
         <p>Address: {{ user.city }}, {{ user.street }}</p>
         <p>Phone: {{ user.phone }}</p>
     {% endif %}
-    {% for todo in todos %}
-    	<p>{{ todo.title }} | Status:
-            {% if todo.completed %}
-                <span class="badge bg-success">Completed</span>
-            {% else %}
-                <span class="badge bg-danger">Not completed</span>
-            {% endif %}
-        </p>
-    {% endfor %}
+    <div class="row">
+        {% for todo in todos %}
+            <div class="card mx-1 my-2 task-card" style="width: 30%">
+                <p>{{ todo.title }} | Status:
+                {% if todo.completed %}
+                    <span class="badge bg-success">Completed</span>
+                {% else %}
+                    <span class="badge bg-danger">Not completed</span>
+                {% endif %}</p>
+                <p>Task created: <b>{{ todo.created_at }}</b></p>
+                <p class="deadline">Deadline: <b>{{ todo.deadline }}</b></p>
 
+                <div class="card-footer">
+                    {% if todo.completed %}
+                        <a href="../todos/{{ todo.id }}/not-completed" class="btn btn-warning btn-sm">Retract</a>
+                    {% else %}
+                        <a href="../todos/{{ todo.id }}/completed" class="btn btn-success btn-sm">Complete Task</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <script>  <!-- внутри этого тега можно писать код на JS -->
+        const now = new Date();  // фиксируем текущую дату (когда на эту страницу зайдут)
+        let todo_cards = document.querySelectorAll('.task-card');  // найти все элементы с классом task-card
+        for (let element in todo_cards) {
+            let deadline = element.p;
+            console.log(element.children);
+        }
+    </script>
 {% endblock %}

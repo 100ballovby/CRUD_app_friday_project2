@@ -1,5 +1,3 @@
-from sqlalchemy.sql.functions import current_user
-
 from app import app, db
 from flask import render_template, request, url_for, redirect
 from models import User, Company, ToDo
@@ -41,7 +39,7 @@ def companies_list():
 def user(id):
     """Функция должна находить пользователя по id в списке пользователей и выдавать страницу с информацией о нем"""
     instance = User.query.get(id)
-    user_todos = ToDo.query.filter_by(user_id=id)
+    user_todos = ToDo.query.filter_by(user_id=id).order_by('completed')
     return render_template('user_page.html', title="О пользователе",
                            user=instance, todos=user_todos)
 
@@ -104,3 +102,35 @@ def add_todo():
         return redirect(url_for('add_todo'))
     return render_template('add_todo.html', title="Add new ToDo",
                            form=form, todos=todos)
+
+
+@app.route('/todos/<int:id>/completed')
+def complete_todo(id):
+    todo = ToDo.query.get_or_404(id)  # забираем задачу из базы по id
+    todo.completed = True
+    db.session.commit()
+    return redirect(url_for('user', id=todo.user_id))
+
+
+@app.route('/todos/<int:id>/not-completed')
+def retract_complete_todo(id):
+    todo = ToDo.query.get_or_404(id)  # забираем задачу из базы по id
+    todo.completed = False
+    db.session.commit()
+    return redirect(url_for('user', id=todo.user_id))
+
+
+@app.route('/todos/<int:id>/toggle-status')
+def toggle_status_todo(id):
+    todo = ToDo.query.get_or_404(id)  # забираем задачу из базы по id
+    if todo.completed:
+        todo.completed = False
+    else:
+        todo.completed = True
+    db.session.commit()
+    s = """В шаблоне надо вот это: <a href="../todos/{{ todo.id }}/toggle-status" class="btn btn-info">
+                        {% if todo.completed %}Retract{% else %}Complete{% endif %}
+                    </a>"""
+    return redirect(url_for('user', id=todo.user_id))
+
+
