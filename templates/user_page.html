@@ -17,7 +17,7 @@
                     <span class="badge bg-danger">Not completed</span>
                 {% endif %}</p>
                 <p>Task created: <b>{{ todo.created_at }}</b></p>
-                <p class="deadline">Deadline: <b>{{ todo.deadline }}</b></p>
+                <p>Deadline: <b class="deadline">{{ todo.deadline }}</b></p>
 
                 <div class="card-footer">
                     {% if todo.completed %}
@@ -34,9 +34,17 @@
     <script>  <!-- внутри этого тега можно писать код на JS -->
         const now = new Date();  // фиксируем текущую дату (когда на эту страницу зайдут)
         let todo_cards = document.querySelectorAll('.task-card');  // найти все элементы с классом task-card
-        for (let element in todo_cards) {
-            let deadline = element.p;
-            console.log(element.children);
+        for (let element of todo_cards) {
+            let deadline = element.querySelector('.deadline');
+            let deadlineDate = new Date(deadline.textContent);
+            deadline.textContent = deadlineDate.toDateString();
+            if (deadlineDate >= now || deadlineDate.getDate() - now.getDate() <= 3) {
+                deadline.classList.add('text-red');
+                deadline.classList.remove('text-green');
+            } else {
+                deadline.classList.add('text-green');
+                deadline.classList.remove('text-red');
+            }
         }
     </script>
 {% endblock %}

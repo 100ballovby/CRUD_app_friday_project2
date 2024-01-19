@@ -36,3 +36,20 @@ form {
     width: 40%;
     margin: 1em auto;
 }
+
+
+.text-green {
+    background: #1ca71c;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.3em;
+    border-radius: 20px;
+}
+
+.text-red {
+    background: #a72f2f;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.3em;
+    border-radius: 20px;
+}

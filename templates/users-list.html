@@ -5,6 +5,7 @@
     <h1>Пользователи:</h1>
     <div class="row justify-content-around">
         <a href="{{ url_for('add_user') }}" class="btn btn-outline-success">Add new user</a>
+        <a href="{{ url_for('add_todo') }}" class="btn btn-outline-info">Add new ToDo</a>
         {% for user in users %}
             <div class="card my-1 mx-1" style="width: 30%">
                 <div class="card-header">
